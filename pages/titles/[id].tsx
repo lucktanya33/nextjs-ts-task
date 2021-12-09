@@ -16,36 +16,31 @@ export const getStaticPaths = async() => {
 
 // pass props to TitleDetail
 export const getStaticProps = async (context) => {
-  const id: number = context.params.id
+  const id: number = parseInt(context.params.id)//change id type
   return {
     props: { id },
    }
 }
 
 const getDetail = (n: number) => {
-  const found = data.find(item => item.id == n)
-  return found
+  return data.find(item => item.id === n)
 }
 
-function TitleDetail ({ id }: number) {
-  let detail: {
-      id: number;
-      type: string;
-      title: string;
-      content: string;
-      hidden?: undefined | boolean;
-  } | undefined
-
+const TitleDetail = ({ id }: {id:number}) => {  
   //useMemo
-  detail = useMemo(() => getDetail(id), [id])
+  const detail = useMemo(() => getDetail(id), [id])
 
   return (
-  <div>
-    <h1>Title Details</h1>
-    <p>Title- { detail && detail.title}</p>
-    <p>Type- {detail && detail.type}</p>
-    <p>Content- {detail && detail.content}</p>
-  </div>
+    detail ? (
+    <div>
+      <h1>Title Details</h1>
+      <p>Title- {detail.title}</p>
+      <p>Type- {detail.type}</p>
+      <p>Content- {detail.content}</p>
+    </div>
+    ) : (
+      <div>Not found</div>
+    )
   )
 }
 export default TitleDetail

@@ -1,11 +1,17 @@
-enum Type {
-  Article = "article",
-  Event = "event",
-  News = "news"
+// Define data type: declare there is a kind of object structure called TitleInfo
+interface TitleInfo {
+  id: number;
+  type: string;
+  title: string;
+  content: string;
+  hidden?: boolean;
 }
 
-export const data= [
-  {id: 4, type: Type.Article , title: 'Title1', content: 'content1'},
-  {id: 5, type: Type.Event, title: 'Title2', content: 'content2', hidden: true},
-  {id: 6, type: Type.News, title: 'Title3', content: 'content3'},
+// Declare a array object variable with type TitleInfo
+const data: TitleInfo[] =  [
+  {id: 4, type: 'article' , title: 'Title1', content: 'content1'},
+  {id: 5, type: 'event' , title: 'Title2', content: 'content2', hidden: true},
+  {id: 6, type: 'news', title: 'Title3', content: 'content3'},
 ]
+
+export { data }
